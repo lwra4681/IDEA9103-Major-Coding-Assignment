@@ -1,4 +1,4 @@
-### lwra4681_9103_assigment_2
+### lwra4681_9103_assignment_2
 ## IDEA9103-Major-Coding-Assignment- Group Section
 The group submission can be found in the folder "group_code_submission" within this repository. Within that folder there is also a document outlining this group work component. 
 
