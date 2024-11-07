@@ -13,9 +13,9 @@ La Colombe is an animated artwork inspired by Picasso's "Dove of Peace," enhance
 
 ### Features
 
-Audio-Responsive Animation: The movement of the dove’s body and wings, as well as the branches and leaves, synchronizes with the amplitude of the audio track. The audio analysis drives subtle oscillations and rotations, giving the appearance of a dove gliding and breathing to the music.
+- Audio-Responsive Animation: The movement of the dove’s body and wings, as well as the branches and leaves, synchronizes with the amplitude of the audio track. The audio analysis drives subtle oscillations and rotations, giving the appearance of a dove gliding and breathing to the music.
 
-Multiple Dove Instances: Three instances of the dove are positioned randomly, each scaling, moving, and oscillating uniquely while remaining synchronized with the sound.
+- Multiple Dove Instances: Three instances of the dove are positioned randomly, each scaling, moving, and oscillating uniquely while remaining synchronized with the sound.
 Play/Pause Button: Users can control the audio playback, pausing and resuming the audio animation as desired.
 
 ### Installation and Setup:
@@ -29,7 +29,7 @@ Play/Pause Button: Users can control the audio playback, pausing and resuming th
 - **Play/Pause Button**: Toggle the audio on or off. The button updates its label to reflect the current state (either "Play Audio" or "Pause Audio").
 Core Functions:
 
--**animateOscillationScaled()**- Applies oscillation and scale to selected parts of the dove model, based on the current amplitude of the audio.
+- **animateOscillationScaled()**- Applies oscillation and scale to selected parts of the dove model, based on the current amplitude of the audio.
 animateRotation() - Rotates the wings of the dove to simulate graceful, wing-like motion.
 - **SoundAnalyzer Class** - Analyzes real-time amplitude data from the audio file, which influences the speed and intensity of the animations.
 
@@ -42,10 +42,11 @@ The SoundAnalyzer class captures amplitude from Le Cygne, which is mapped to the
 - **p5.sound:** Handles audio playback and real-time analysis, creating a reactive experience that aligns the visuals with the audio.
 - **Responsive Scalin** and Positioning: Maintains the aspect ratio of the canvas, adapting to various screen sizes.
 
-### 4 Music:
+###  Music:
 
-Le Cygne by Camille Saint-Saëns, performed by Yoyo MA, and Kathryn Stott.
+- Le Cygne by Camille Saint-Saëns, performed by Yoyo MA, and Kathryn Stott.
 
 ![An image of the artowrk as an example](readmeImages/example2.png)
+*Figure 1: La Colombe - Animated artwork featuring a dove responding to audio*
 
 
