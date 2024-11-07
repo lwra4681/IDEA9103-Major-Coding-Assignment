@@ -64,12 +64,12 @@ class Sketch {
     pop(); //restoring previous drawing state without affecting other functions etc
   }
   
-  animateOscillation(offsetx,offsety,offsetZ, oscil_amount = 20) {
+  animateOscillation(offsetx,offsety,offsetZ, oscil_amount = 20,speed=0.05) {
     
     //the body needed to move with the wings, however up and down, not rotation. 
     //repeating the same idea as above, except only translating.
     push();
-    let oscillation = sin(frameCount * 0.05) * (oscil_amount*this.scaleFactor) - offsety;
+    let oscillation = sin(frameCount * speed) * (oscil_amount*this.scaleFactor) - offsety;
     translate(offsetx,oscillation, offsetZ); //using the oscillation within translation allowed for the up/down movement
     this.connectPoints();
     pop();

@@ -125,8 +125,8 @@ function windowResized() {
 function togglePlayPause() {
   soundAnalyzer.togglePlay(); // Toggle the audio play state
   if (soundAnalyzer.audio.isPlaying()) {
-    playPauseButton.html('Pause'); // Change button text to "Pause" when audio is playing
+    playPauseButton.html('Pause Audio'); // Change button text to "Pause" when audio is playing
   } else {
-    playPauseButton.html('Play'); // Change button text to "Play" when audio is paused
+    playPauseButton.html('Play Audio'); // Change button text to "Play" when audio is paused
   }
 }
