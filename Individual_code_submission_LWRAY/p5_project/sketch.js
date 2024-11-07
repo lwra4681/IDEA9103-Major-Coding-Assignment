@@ -4,22 +4,14 @@ let white = [255, 255, 255, 255]; // RGBA colour array for white
 
 let scene; // Variable to hold the Scene object
 let soundAnalyzer; // Variable to hold the SoundAnalyzer object
-
-// Define fixed aspect ratio and canvas dimensions
-let aspectRatio = 1 / 1; // Fixed aspect ratio
-let minWidth = 600;   // Minimum width for the canvas
-let minHeight = 600;  // Minimum height for the canvas
-let maxWidth = 900;  // Maximum width for the canvas
-let maxHeight = 900;  // Maximum height for the canvas
-
-
+let instanceData = []; // Array to hold position and scale for each instance
+let instances = 3; // Number of instances
+let playPauseButton; // Button for play/pause
 
 // Preload function to load sketch data and audio file
 function preload() {
-  // Load audio for SoundAnalyzer
-  soundAnalyzer = new SoundAnalyzer("audio_files/cello.wav");
+  soundAnalyzer = new SoundAnalyzer("audio_files/le-cygne.mp3");
 
-  // Create new Sketch instances from CSV files and assign colours
   sketches.push(new Sketch("body.csv", white));
   sketches.push(new Sketch("Rwing.csv", white));
   sketches.push(new Sketch("Lwing.csv", [255, 255, 255, 200]));
@@ -31,46 +23,71 @@ function preload() {
   sketches.push(new Sketch("leaf4.csv", green));
 }
 
-// Setup function to initialize the canvas and scene
+// Setup function to initialize the canvas, scene, and instance data
 function setup() {
-  createCanvas(600, 600, WEBGL); // Create a 600x600 WebGL canvas
-  noStroke(); // Disable stroke drawing
-  scene = new Scene(width, height); // Initialize the scene with canvas dimensions
-  
-  // Load all sketch points for each sketch
+  createCanvas(600, 600, WEBGL);
+  noStroke();
+  scene = new Scene(width, height);
   sketches.forEach(sketch => sketch.loadPoints());
 
-  // Start playing the audio
   soundAnalyzer.togglePlay();
+
+
+  // Generate and store random position and scale data for each instance
+  for (let i = 0; i < instances; i++) {
+    let x = random(-width / 2, width / 2);
+    let y = random(-height / 2, height / 2);
+    let z = 200; // Keep z fixed or make it random if desired
+    let scaleValue = random(0.5, 1); // Generate a random scale for each instance
+    let phaseOffset = random(PI/4); // Random phase offset for each instance
+
+    instanceData.push({ x, y, z, scaleValue,phaseOffset});
+   }
+  // Create a play/pause button
+  playPauseButton = createButton('Load Audio');
+  playPauseButton.position(10, 10); // Position the button on the canvas
+  playPauseButton.mousePressed(togglePlayPause); // Attach function to button press
 }
 
 
-// In your main draw function:
 function draw() {
-  scene.displayBackground(); // Display background gradient
+  scene.displayBackground();
   soundAnalyzer.update();
+  
+  instanceData.forEach((data, i) => {
+    // Retrieve scale value from audio if desired (optional)
+    let scaleValue = data.scaleValue * 0.5;
+    let speed = 0.05 * map(soundAnalyzer.getAmplitude(), 0, 255, 1, 1.2);
+    
+    
+    data.x = data.x + soundAnalyzer.getAmplitude()/10;
+    data.y = data.y + soundAnalyzer.getAmplitude()/10;
 
-  // Example: Retrieve scale value from amplitude, energy, or another FFT property
-  let scaleValue = map(soundAnalyzer.getAmplitude(), 0, 255, 0.5, 1.5);
+    // Check if the x and y positions are outside the canvas bounds
+    if (data.x > width+200) {
+      data.x = -width-200; // Reset x if it's outside the canvas width
+    }
+    if (data.y > height+200) {
+      data.y = -height-200; // Reset y if it's outside the canvas height
+    }
+    
+    // Animate oscillation with scaling for specific sketches at stored positions
+    animateOscillationScaled([0, 3, 4, 5, 6, 7, 8], scaleValue, data.x, data.y, data.z, speed);
 
-  let x = 0;
-  let y = 40;
-  let z = 200;
+    
+    animateRotation([1], scaleValue, data.x + 50, -data.y + 40, data.z, PI/4, speed); // Rotate right wing
+    animateRotation([2], scaleValue, data.x, -data.y + 40, data.z, PI/4, speed, -1, -1); // Rotate left wing
+  })
 
-  // Animate oscillation with scaling for specific sketches
-  animateOscillationWithScale([0, 3, 4, 5, 6, 7, 8], scaleValue, x, y, z);
-  // Animate rotation for specific sketches without scaling
-  animateRotation([1], scaleValue, 50, 0, z, PI / 4, 0.05); // Rotate right wing
-  animateRotation([2], scaleValue, 0, 0, z, PI / 4, 0.05, -1, -1); // Rotate left wing
 }
 
 
 // Function to animate oscillation for a set of sketches with dynamic scaling
-function animateOscillationWithScale(sketchIndices, scaleValue, x, y, z) {
+function animateOscillationScaled(sketchIndices, scaleValue, x, y, z, speed) {
   push();
   scale(scaleValue); // Apply scale based on amplitude or another sound property
   sketchIndices.forEach(index => {
-    sketches[index].animateOscillation(x, y, z);
+    sketches[index].animateOscillation(x, y, z, 20,speed);
   });
   pop();
 }
@@ -103,7 +120,13 @@ function windowResized() {
   sketches.forEach(sketch => sketch.loadPoints());
 }
 
-// Function to toggle audio playback with mouse click
-function mousePressed() {
-  soundAnalyzer.togglePlay();
+
+// Function to toggle play/pause
+function togglePlayPause() {
+  soundAnalyzer.togglePlay(); // Toggle the audio play state
+  if (soundAnalyzer.audio.isPlaying()) {
+    playPauseButton.html('Pause'); // Change button text to "Pause" when audio is playing
+  } else {
+    playPauseButton.html('Play'); // Change button text to "Play" when audio is paused
+  }
 }
