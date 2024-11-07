@@ -6,7 +6,7 @@ The Individual component is an extension of the group submission, where I used a
 
 
 ## IDEA9103-Major-Coding-Assignment- Individual Section
-Dove of Peace/ La Colombe - Interactive Audio-Visual Artwork
+Doves of Peace/ Trois Colombe - Interactive Audio-Visual Artwork
 
 ### Summary:
 La Colombe is an animated artwork inspired by Picasso's "Dove of Peace," enhanced by the emotive music of Le Cygne (The Swan) by Camille Saint-Saëns. This project is built using p5.js with WebGL for 3D rendering and p5.sound for real-time audio analysis, creating an interactive experience where the animation responds dynamically to the music. The result is a harmonious blend of French art and music that reflects universal symbols of peace and hope.

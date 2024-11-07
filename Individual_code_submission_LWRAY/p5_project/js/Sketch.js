@@ -1,6 +1,5 @@
 // Sketch class for each loaded file
 
-
 class Sketch {
   constructor(filename, colour) {
     
