@@ -47,6 +47,7 @@ The SoundAnalyzer class captures amplitude from Le Cygne, which is mapped to the
 - Le Cygne by Camille Saint-Saëns, performed by Yoyo MA, and Kathryn Stott.
 
 ![An image of the artowrk as an example](readmeImages/example2.png)
+
 *Figure 1: La Colombe - Animated artwork featuring a dove responding to audio*
 
 
