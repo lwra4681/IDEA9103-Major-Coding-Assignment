@@ -9,7 +9,8 @@ The Individual component is an extension of the group submission, where I used a
 Doves of Peace/ Trois Colombe - Interactive Audio-Visual Artwork
 
 ### Summary:
-La Colombe is an animated artwork inspired by Picasso's "Dove of Peace," enhanced by the emotive music of Le Cygne (The Swan) by Camille Saint-Saëns. This project is built using p5.js with WebGL for 3D rendering and p5.sound for real-time audio analysis, creating an interactive experience where the animation responds dynamically to the music. The result is a harmonious blend of French art and music that reflects universal symbols of peace and hope.
+La Colombe is an animated artwork inspired by Picasso's "Dove of Peace," enhanced by the emotive music of Le Cygne (The Swan) by Camille Saint-Saëns. This project is built using p5.js with WebGL for 3D rendering and p5.sound for real-time audio analysis, creating an interactive experience where the animation responds dynamically to the music. The result is a harmonious blend of French art and music that reflects universal symbols of peace and hope. This work was inspired by [this tutorial video by The Coding Train](https://www.youtube.com/watch?v=NCCHQwNAN6Y).
+
 
 ### Features
 
@@ -31,14 +32,14 @@ Core Functions:
 
 - **animateOscillationScaled()**- Applies oscillation and scale to selected parts of the dove model, based on the current amplitude of the audio.
 animateRotation() - Rotates the wings of the dove to simulate graceful, wing-like motion.
-- **SoundAnalyzer Class** - Analyzes real-time amplitude data from the audio file, which influences the speed and intensity of the animations.
+- **AudioAnalyser Class** - Analyses real-time amplitude data from the audio file, which influences the speed and intensity of the animations.
 
 ### Audio Analysis and Animation:
-The SoundAnalyzer class captures amplitude from Le Cygne, which is mapped to the oscillation and rotation of the dove sketches. The amplitude drives minor positional shifts, simulating the effect of flight and infusing the artwork with lifelike fluidity.
+The AudioAnalyser class captures amplitude from Le Cygne, which is mapped to the oscillation and rotation of the dove sketches. The amplitude drives minor positional shifts, simulating the effect of flight and infusing the artwork with lifelike fluidity.
 
 ### Technical Details:
 
-- **WebGL and p5.js:** Utilizes WebGL for rendering to achieve 3D-like effects and smooth transitions.
+- **WebGL and p5.js:** Utilises WebGL for rendering to achieve 3D-like effects and smooth transitions.
 - **p5.sound:** Handles audio playback and real-time analysis, creating a reactive experience that aligns the visuals with the audio.
 - **Responsive Scalin** and Positioning: Maintains the aspect ratio of the canvas, adapting to various screen sizes.
 
